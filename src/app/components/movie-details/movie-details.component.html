@@ -1,0 +1,12 @@
+<div class="container mt-4" *ngIf="movie">
+  <h2>{{ movie.Title }}</h2>
+  <p>{{ movie.Plot }}</p>
+  <ul>
+    <li><strong>Ano:</strong> {{ movie.Year }}</li>
+    <li><strong>Atores:</strong> {{ movie.Actors }}</li>
+    <li><strong>Tempo de Duração:</strong> {{ movie.Runtime }}</li>
+    <li><strong>Prêmios:</strong> {{ movie.Awards }}</li>
+  </ul>
+  <img [src]="movie.Poster" alt="{{ movie.Title }}">
+</div>
+<div *ngIf="error" class="alert alert-danger">{{ error }}</div>

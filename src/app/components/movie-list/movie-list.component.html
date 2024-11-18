@@ -1,0 +1,25 @@
+<div class="container mt-4">
+  <h2>Buscar Filmes e Séries</h2>
+  <div class="input-group mb-3">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Digite o título do filme ou série..."
+      [(ngModel)]="searchTitle"
+    />
+    <button class="btn btn-primary" (click)="search()">Buscar</button>
+  </div>
+  <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+  <div class="row">
+    <div *ngFor="let movie of movies" class="col-md-3 mb-3">
+      <div class="card">
+        <img [src]="movie.Poster" class="card-img-top" alt="{{ movie.Title }}">
+        <div class="card-body">
+          <h5 class="card-title">{{ movie.Title }}</h5>
+          <p class="card-text">{{ movie.Year }}</p>
+          <a [routerLink]="['/details', movie.imdbID]" class="btn btn-primary">Ver Detalhes</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
