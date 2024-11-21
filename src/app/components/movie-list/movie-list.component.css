@@ -1,60 +1,50 @@
-/* Embasamento da tela */
-.container {
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Playfair+Display:wght@700&display=swap');
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(120deg, #1e414e, #366070, #2c5364);
+  margin: 0;
+  padding: 0;
+  color: #ffffff;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
   position: relative;
 }
 
-.card-body button {
-  margin-bottom: 10px; /* Adiciona um espaçamento inferior */
-}
-
-.card-body button:first-of-type {
-  margin-bottom: 15px; /* Adiciona um espaçamento maior entre os botões */
-}
-
-.details-popup {
+body::before {
+  content: '';
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: white;
-  padding: 30px;
-  border-radius: 15px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-  z-index: 1001; /* Mantém acima da camada embasada */
-  text-align: left; /* Alinhamento do texto */
-  width: 90%; /* Aumenta a largura do popup */
-  max-width: 1000px; /* Limite para telas grandes */
-  max-height: 80vh; /* Limite máximo de altura relativo à tela */
-  overflow-y: auto; /* Adiciona rolagem somente vertical, se necessário */
-  overflow-x: hidden; /* Impede rolagem horizontal */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(60deg, #ff6f61, #f9a825, #29b6f6, #7e57c2);
+  background-size: 400% 400%;
+  z-index: -2;
+  animation: gradient-background 20s ease infinite;
 }
 
-.details-popup img {
-  max-width: 100%; /* A imagem não ultrapassará o tamanho do popup */
-  height: auto; /* Mantém a proporção da imagem */
-  border-radius: 10px; /* Borda arredondada */
-  margin-bottom: 20px;
-  display: block; /* Centraliza a imagem */
-  margin-left: auto;
-  margin-right: auto;
-  object-fit: contain; /* Garante que a imagem se encaixe sem cortar */
+@keyframes gradient-background {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
-
-.details-popup h3 {
-  margin: 0 0 15px;
-  font-size: 24px;
-  color: #333;
+.container {
+  position: relative;
+  padding: 50px;
+  max-width: 1200px;
+  margin: 0 auto;
+  z-index: 1;
 }
 
-.details-popup p {
-  margin: 5px 0;
-  font-size: 16px;
-  line-height: 1.5;
-  color: #555;
-}
-
-/* Tela embasada */
+/* Embasamento da tela com efeito de vidro fosco */
 .container::after {
   content: '';
   position: fixed;
@@ -62,13 +52,206 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.7); /* Escurece o fundo */
-  backdrop-filter: blur(10px); /* Embasamento */
-  z-index: 1000; /* Abaixo do popup */
+  background: rgba(15, 32, 39, 0.9);
+  backdrop-filter: blur(25px) saturate(150%);
+  z-index: 1000;
   display: none;
+  transition: opacity 0.5s ease;
 }
 
 /* Ativa o embasamento quando houver um filme selecionado */
 .container.details-active::after {
   display: block;
+  opacity: 1;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.card-img-top {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.card-body {
+  text-align: center;
+}
+
+.card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  color: #000; /* Cor preta para o título */
+}
+
+.card-text {
+  font-size: 16px;
+  color: #000; /* Cor preta para o ano */
+}
+
+
+.card-body button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  border-radius: 30px;
+  border: none;
+  font-size: 14px;
+  font-weight: bold;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+}
+
+.card-body button:hover {
+  transform: translateY(-5px);
+}
+
+.card-body button:first-child {
+  background: linear-gradient(45deg, #ff8c00, #ff5400);
+}
+
+.card-body button:first-child:hover {
+  background: linear-gradient(45deg, #ff5400, #ff8c00);
+}
+
+.card-body button:last-child {
+  background: linear-gradient(45deg, #007bff, #0056b3);
+}
+
+.card-body button:last-child:hover {
+  background: linear-gradient(45deg, #0056b3, #007bff);
+}
+
+/* Popup de detalhes com sombras complexas e fundo translúcido */
+.details-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  background: rgba(55, 55, 55, 0.95);
+  padding: 60px;
+  border-radius: 30px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7);
+  z-index: 1001;
+  text-align: center;
+  width: 90%;
+  max-width: 1000px;
+  max-height: 85vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  color: #f9f9f9;
+  animation: popup-appear 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px) saturate(10%);
+}
+
+.details-popup img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 25px;
+  margin-bottom: 30px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  object-fit: cover;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+  transition: transform 0.4s, box-shadow 0.4s;
+}
+
+.details-popup img:hover {
+  transform: scale(1.08);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.8);
+}
+
+.details-popup h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  margin-bottom: 15px;
+  color: #ffd700;
+}
+
+.details-popup p {
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 10px 0;
+}
+
+.details-popup button.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: linear-gradient(45deg, #ff416c, #ff4b2b);
+  border: none;
+  color: #ffffff;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.details-popup button.close-btn:hover {
+  transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 20px;
+  }
+
+  .card {
+    margin-bottom: 20px;
+  }
+
+  .details-popup {
+    width: 95%;
+    padding: 20px;
+  }
+
+  .details-popup h3 {
+    font-size: 20px;
+  }
+
+  .details-popup p {
+    font-size: 14px;
+  }
+
+  .card-body button {
+    font-size: 12px;
+    padding: 8px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 10px;
+  }
+
+  .card {
+    margin-bottom: 15px;
+  }
+
+  .details-popup {
+    padding: 15px;
+  }
+
+  .details-popup h3 {
+    font-size: 18px;
+  }
+
+  .details-popup p {
+    font-size: 12px;
+  }
+
+  .card-body button {
+    font-size: 10px;
+    padding: 5px 10px;
+  }
 }
