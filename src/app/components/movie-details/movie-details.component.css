@@ -1,0 +1,32 @@
+.movie-details-box {
+  border: 1px solid #ddd;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 600px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  text-align: left;
+}
+
+.movie-details-box h1 {
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.movie-details-box img {
+  display: block;
+  margin: 0 auto 20px;
+  max-width: 100%;
+  border-radius: 8px;
+}
+
+.loading {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.error {
+  color: red;
+  text-align: center;
+  margin-top: 20px;
+}

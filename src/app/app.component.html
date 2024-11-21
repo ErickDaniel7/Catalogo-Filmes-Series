@@ -1,1 +1,33 @@
-<app-movie-list></app-movie-list>
+<div class="container mt-4">
+  <h1 align="center">Catálogo de Filmes e Séries</h1>
+  <div class="d-flex justify-content-center">
+    <button class="btn btn-info mb-4" (click)="toggleFavorites()">
+      {{ showFavorites ? 'Ocultar Favoritos' : 'Mostrar Favoritos' }}
+    </button>
+  </div>
+
+
+  <!-- Lista de Favoritos -->
+  <div *ngIf="showFavorites">
+    <h2 align="center">Meus Favoritos</h2>
+    <div class="row">
+      <div *ngFor="let movie of favorites" class="col-md-3 mb-3">
+        <div class="card">
+          <img [src]="movie.Poster" class="card-img-top" alt="{{ movie.Title }}">
+          <div class="card-body">
+            <h5 class="card-title">{{ movie.Title }}</h5>
+            <p class="card-text">{{ movie.Year }}</p>
+            <button
+              class="btn btn-danger"
+              (click)="removeFavorite(movie)">
+              Remover dos Favoritos
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Componente de Lista de Filmes -->
+  <app-movie-list></app-movie-list>
+</div>

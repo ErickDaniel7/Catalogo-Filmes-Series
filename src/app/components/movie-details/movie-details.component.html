@@ -1,12 +1,26 @@
-<div class="container mt-4" *ngIf="movie">
-  <h2>{{ movie.Title }}</h2>
-  <p>{{ movie.Plot }}</p>
-  <ul>
-    <li><strong>Ano:</strong> {{ movie.Year }}</li>
-    <li><strong>Atores:</strong> {{ movie.Actors }}</li>
-    <li><strong>Tempo de Duração:</strong> {{ movie.Runtime }}</li>
-    <li><strong>Prêmios:</strong> {{ movie.Awards }}</li>
-  </ul>
-  <img [src]="movie.Poster" alt="{{ movie.Title }}">
+<div *ngIf="isLoading" class="loading">
+  <p>Carregando detalhes do filme...</p>
 </div>
-<div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+
+<div *ngIf="!isLoading && movie" class="movie-details-box">
+  <h1>{{ movie.Title }}</h1>
+  <img [src]="movie.Poster" alt="{{ movie.Title }} poster" />
+  <p><strong>Ano:</strong> {{ movie.Year }}</p>
+  <p><strong>Classificação:</strong> {{ movie.Rated }}</p>
+  <p><strong>Data de Lançamento:</strong> {{ movie.Released }}</p>
+  <p><strong>Tempo de Duração:</strong> {{ movie.Runtime }}</p>
+  <p><strong>Gênero:</strong> {{ movie.Genre }}</p>
+  <p><strong>Diretor:</strong> {{ movie.Director }}</p>
+  <p><strong>Roteirista:</strong> {{ movie.Writer }}</p>
+  <p><strong>Atores:</strong> {{ movie.Actors }}</p>
+  <p><strong>Sinopse:</strong> {{ movie.Plot }}</p>
+  <p><strong>Linguagem:</strong> {{ movie.Language }}</p>
+  <p><strong>País:</strong> {{ movie.Country }}</p>
+  <p><strong>Prêmios:</strong> {{ movie.Awards }}</p>
+  <p><strong>Classificação IMDb:</strong> {{ movie.imdbRating }}</p>
+  <p><strong>Bilheteria:</strong> {{ movie.BoxOffice }}</p>
+</div>
+
+<div *ngIf="!isLoading && error" class="error">
+  <p>{{ error }}</p>
+</div>

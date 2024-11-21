@@ -9,7 +9,9 @@
     />
     <button class="btn btn-primary" (click)="search()">Buscar</button>
   </div>
+
   <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+
   <div class="row">
     <div *ngFor="let movie of movies" class="col-md-3 mb-3">
       <div class="card">
@@ -17,9 +19,38 @@
         <div class="card-body">
           <h5 class="card-title">{{ movie.Title }}</h5>
           <p class="card-text">{{ movie.Year }}</p>
-          <a [routerLink]="['/details', movie.imdbID]" class="btn btn-primary">Ver Detalhes</a>
+          <button
+            class="btn btn-warning"
+            (click)="toggleFavorite(movie)"
+          >
+            {{ isFavorite(movie) ? 'Remover dos Favoritos' : 'Adicionar aos Favoritos' }}
+          </button>
+          <button
+            class="btn btn-primary"
+            (click)="showDetails(movie)"
+          >
+            Ver Detalhes
+          </button>
         </div>
       </div>
     </div>
+  </div>
+
+  <!-- Popup de detalhes -->
+  <div
+    class="details-popup"
+    *ngIf="hoveredMovie"
+    (mouseleave)="hideDetails()"
+  >
+    <h3>{{ hoveredMovie.Title }}</h3>
+    <img [src]="hoveredMovie.Poster" alt="{{ hoveredMovie.Title }}" />
+    <p><strong>Ano:</strong> {{ hoveredMovie.Year }}</p>
+    <p><strong>Data de Lançamento:</strong> {{ hoveredMovie.Released}}</p>
+    <p><strong>Classificação:</strong> {{ hoveredMovie.Rated }}</p>
+    <p><strong>Tempo de Duração</strong> {{ hoveredMovie.Runtime}}</p>
+    <p><strong>Atores:</strong> {{ hoveredMovie.Actors}}</p>
+    <p><strong>Sinopse:</strong> {{ hoveredMovie.Plot }}</p>
+    <p><strong>Diretor:</strong> {{ hoveredMovie.Director }}</p>
+    <p><strong>Gênero:</strong> {{ hoveredMovie.Genre }}</p>
   </div>
 </div>

@@ -1,0 +1,74 @@
+/* Embasamento da tela */
+.container {
+  position: relative;
+}
+
+.card-body button {
+  margin-bottom: 10px; /* Adiciona um espaçamento inferior */
+}
+
+.card-body button:first-of-type {
+  margin-bottom: 15px; /* Adiciona um espaçamento maior entre os botões */
+}
+
+.details-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  z-index: 1001; /* Mantém acima da camada embasada */
+  text-align: left; /* Alinhamento do texto */
+  width: 90%; /* Aumenta a largura do popup */
+  max-width: 1000px; /* Limite para telas grandes */
+  max-height: 80vh; /* Limite máximo de altura relativo à tela */
+  overflow-y: auto; /* Adiciona rolagem somente vertical, se necessário */
+  overflow-x: hidden; /* Impede rolagem horizontal */
+}
+
+.details-popup img {
+  max-width: 100%; /* A imagem não ultrapassará o tamanho do popup */
+  height: auto; /* Mantém a proporção da imagem */
+  border-radius: 10px; /* Borda arredondada */
+  margin-bottom: 20px;
+  display: block; /* Centraliza a imagem */
+  margin-left: auto;
+  margin-right: auto;
+  object-fit: contain; /* Garante que a imagem se encaixe sem cortar */
+}
+
+
+.details-popup h3 {
+  margin: 0 0 15px;
+  font-size: 24px;
+  color: #333;
+}
+
+.details-popup p {
+  margin: 5px 0;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #555;
+}
+
+/* Tela embasada */
+.container::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7); /* Escurece o fundo */
+  backdrop-filter: blur(10px); /* Embasamento */
+  z-index: 1000; /* Abaixo do popup */
+  display: none;
+}
+
+/* Ativa o embasamento quando houver um filme selecionado */
+.container.details-active::after {
+  display: block;
+}

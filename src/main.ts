@@ -11,4 +11,4 @@ bootstrapApplication(AppComponent, {
     provideRouter(routes),
     importProvidersFrom(HttpClientModule, FormsModule)
   ],
-}).catch((err) => console.error(err));
+}).catch((err) => console.error());

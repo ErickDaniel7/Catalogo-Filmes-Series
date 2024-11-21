@@ -1,30 +1,23 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MovieService {
-  private API_URL = 'http://www.omdbapi.com/';
-  private API_KEY = 'bbddf143';
+  private apiKey = 'bbddf143';  // Substitua pela sua chave da API OMDb
+  private apiUrl = 'https://www.omdbapi.com/';
 
   constructor(private http: HttpClient) {}
 
-  searchMovies(title: string): Observable<any> {
-    return this.http.get(`${this.API_URL}?apikey=${this.API_KEY}&s=${title}`).pipe(
-      catchError(this.handleError)
-    );
+  getMovieDetails(imdbID: string): Observable<any> {
+    const url = `${this.apiUrl}?i=${imdbID}&apikey=${this.apiKey}&plot=full`; // Adicionado &plot=full
+    return this.http.get<any>(url);
   }
 
-  getMovieDetails(id: string): Observable<any> {
-    return this.http.get(`${this.API_URL}?apikey=${this.API_KEY}&i=${id}`).pipe(
-      catchError(this.handleError)
-    );
-  }
-
-  private handleError(error: HttpErrorResponse) {
-    return throwError('Algo deu errado! Tente novamente.');
+  searchMovies(searchTitle: string): Observable<any> {
+    const url = `${this.apiUrl}?s=${searchTitle}&apikey=${this.apiKey}`;
+    return this.http.get<any>(url);
   }
 }
