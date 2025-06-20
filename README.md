@@ -6,6 +6,28 @@
 
 Este projeto foi gerado com [Angular CLI](https://github.com/angular/angular-cli) versão 18.2.12.
 
+<br>
+
+# Telas/Demonstrações
+
+### 📋 Filmes 
+
+![Tela Menu Principal](https://github.com/ErickDaniel7/Catalogo-Filmes-Series/blob/main/Demonstrações/Films.png)
+
+### 📋 Detalhes dos Filmes 
+
+![Tela Menu Principal](https://github.com/ErickDaniel7/Catalogo-Filmes-Series/blob/main/Demonstrações/Details.png)
+
+### 📋 Favoritos
+
+![Tela Menu Principal](https://github.com/ErickDaniel7/Catalogo-Filmes-Series/blob/main/Demonstrações/Favorites.png)
+
+### 📋 Demonstração
+
+![Tela Menu Principal](https://github.com/ErickDaniel7/Catalogo-Filmes-Series/blob/main/Demonstrações/Demo.gif)
+
+<br>
+
 ## Servidor de Desenvolvimento
 
 Execute `ng serve` para iniciar o servidor de desenvolvimento. Navegue até `http://localhost:4200/`. A aplicação será recarregada automaticamente sempre que você modificar algum arquivo de origem.
